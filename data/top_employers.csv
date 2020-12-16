@@ -1,0 +1,11 @@
+﻿rank,employer,no_employees,long,lat,centralized_campus
+1,The Boeing Company,"64,300",-122.312023,47.532685,y
+2,"Amazon.com, Inc.","45,000",-122.3396877,47.61587507,y
+3,Microsoft Corporation,"43,031",-122.3396877,47.645744,y
+4,University of Washington,"30,200",-122.303644,47.655544,y
+5,Providence Health & Service,"17,553",,,n
+6,"Wal-Mart Stores, Inc. ","16,000",,,n
+7,Fred Meyer Stores,"15,500",,,n
+8,Starbucks Corporation,"11,239",-122.336,47.5807,y
+9,Swedish Health Services,"10,758",-122.3228,47.609,n
+10,Costco Wholesale Corporation,"9,264",,,n
