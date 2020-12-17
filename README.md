@@ -1,66 +1,90 @@
-# Phase 2 Project
+# Phase 2 Project - King County, WA Housing Market
 
-Another module down--you're almost half way there!
+## Final Project Submission
 
-![awesome](https://raw.githubusercontent.com/learn-co-curriculum/dsc-phase-2-project-campus/master/halfway-there.gif)
+* Student name: Catherine Fritz
+* Student pace: part time
+* Scheduled project review date: December 18, 2020
+* Instructor name: Amber Yandow
 
-All that remains in Phase 2 is to put our newfound data science skills to use with a large project! This project should take 20 to 30 hours to complete.
+In this project, I wanted to focus on providing data to a home buyer looking to move to the Seattle to work and wanting to get a sense of the major influences on the costs of housing. To accomplish this, I will utilize the CRISP-DM method to create a multivariate linear regression model of the King County House Sales dataset.
 
-## Project Overview
+### Business Understanding
+With the target audience of those moving to Seattle to work, I assumed that someone looking at house prices would want to balance their commute with how much they would spend on a mortgage. I wanted to look at if a house's average distance to the top employers in the Seattle area influenced housing prices. Further for this audience, I made the assumption that this audience would be interested in 2 or fewer bedrooms and houses that cost less than $2 million. 
 
-For this project, you will use regression modeling to analyze house sales in a northwestern county.
+### Data Understanding
+The King County House Sales dataset provided information on the following features for each house:
+* Date - date the house was sold
+* Price - price as sold on prior date
+* No. of bedrooms
+* No. of bedrooms
+* Square footage of the home
+* Square footage of the lot
+* No. of floors
+* If the house has a view to a waterfront
+* If the house been viewed
+* How good the condition is ( Overall )
+* Overall grade given to the housing unit, based on King County grading system
+* Square footage of house apart from basement
+* Square footage of the basement
+* Year house was build
+* Year when house was renovated (if renovated)
+* Zip code
+* Latitude coordinate
+* Longitude coordinate
+* The square footage of interior housing living space for the nearest 15 neighbors
+* The square footage of the land lots of the nearest 15 neighbors
 
-### The Data
+To get the top 10 employers, I looked at HUD data for the Seattle area, and then further narrowed the list down to the top 5 employers below with centralized campuses as opposed to many locations spread over the entire area. 
+![pic1](./images/employers.PNG)
+For each house, I calculated the average distance to each of these 5 employers and the distance of each house to the central downtown area to give two additional features:
+* Average distance to a top 5 employer
+* Distance to the center of downtown
 
-This project uses the King County House Sales dataset, which can be found in  `kc_house_data.csv` in the data folder in this repo. The description of the column names can be found in `column_names.md` in the same folder. As with most real world data sets, the column names are not perfectly described, so you'll have to do some research or use your best judgment if you have questions about what the data means.
+### Data Preparation 
+The data was cleaned to turn numbers stored as strings into integers, fill in 0s where there was missing data or NaN, and also the dates were converted to a number representing the month so these features could be used in the regression. I also converted any categorical variable into dummy/indicator variables so that it would work in the model.
 
-It is up to you to decide what data from this dataset to use and how to use it. If you are feeling overwhelmed or behind, we recommend you ignore some or all of the following features:
+For each house, I calculated the distance to each of these 5 employers and then recorded the average. I also calculated the distance of each house to the central downtown area. What I found is that because these employers are mainly downtown, the distances were relatively close, a snapshot of which is shown below. 
+![pic3](./images/distances_table.PNG)
 
-* date
-* view
-* sqft_above
-* sqft_basement
-* yr_renovated
-* zipcode
-* lat
-* long
-* sqft_living15
-* sqft_lot15
+Because the distances I calculated and also the previously provided zip code, latitude, and longitude data are all different ways to measure distance, they ended up having high multicollinearity, as shown in the heatmap below. As a result, I ended up keeping only the distance to downtown since it was a good representative of all the location features. 
+![pic4](./images/heatmap.PNG)
 
-### Business Problem
+### Modeling
+#### Model I
+For my first model I included all the features and then dropped those with a p-value greater than 0.05, which indicates that the feature might not be significant. 
 
-It is up to you to define a stakeholder and business problem appropriate to this dataset.
+#### Model II
+For my first refinement, I wanted to see what effect standardizing and normalizing my data would have. To normalize the data I used the Box-Cox method, and to standardize the data I used the Z-Score method.
 
-If you are struggling to define a stakeholder, we recommend you complete a project for a real estate agency that helps homeowners buy and/or sell homes. A business problem you could focus on for this stakeholder is the need to provide advice to homeowners about how home renovations might increase the estimated value of their homes, and by what amount.
+#### Model III
+Despite standardizing and normalizing my data, I was still having residual normality and heteroscedasticity issues. To try and help this, I limited the range of my data to a narrower price range. 
 
-## Deliverables
+#### Model IV
+The normality issue improved, but I was still having high heteroscedasticity, so I built a model from the ground up. The result did not have the best R-squared value, however it adhered to the normality and homoscedasticity assumptions necessary.
 
-There are three deliverables for this project:
+### Evaluation
+As predicted by my final R-squared value, the fit is OK, but confirms that the top two influences are housing prices are the distance from downtown and the square footage of the living area. Below is a snapshot of some predicted vs. actual data. 
+![pic5](./images/price-v-sqftliving.PNG)
 
-* A **GitHub repository**
-* A **Jupyter Notebook**
-* A **non-technical presentation**
+### Deployment
+For More Information, please review my full analysis in Jupyter Notebook or my presentation.
 
-Review the "Project Submission & Review" page in the "Milestones Instructions" topic for instructions on creating and submitting your deliverables. Refer to the rubric associated with this assignment for specifications describing high-quality deliverables.
+For any additional questions, please contact Catherine Fritz: cmfritz0@gmail.com.
 
-### Key Points
+## Repository Structure
+#### Main Page
+    ├── README.md                              <- The top-level README for reviewers of this project
+    ├── resentation.pdf                        <- PDF version of project presentation
+    ├── data.ipynb                             <- notebook used to generate data
+    ├── analysis.ipynb                         <- master notebook
+    ├── data                                   <- folder where data exists
+    ├── images                                 <- folder where data visualizations and graphics are located
 
-* **Your deliverables should explicitly address each step of the data science process.** Refer to [the Data Science Process lesson](https://github.com/learn-co-curriculum/dsc-data-science-processes) from Topic 19 for more information about process models you can use.
+#### Data
+    ├── geodata.pkl                            <- pkl file from data.ipynb 
+    ├── kc_house_data.csv                      <- housing data .csv file
+    ├── top_employers.csv                      <- top employers .csv file
 
-* **Your Jupyter Notebook should demonstrate an iterative approach to modeling.** This means that you begin with a basic model, evaluate it, and then provide justification for and proceed to a new model. After you finish refining your models, you should provide 1-3 paragraphs discussing your final model - this should include interpreting at least 3 important parameter estimates or statistics.
-
-* **Based on the results of your models, your notebook and presentation should discuss at least two features that have strong relationships with housing prices.**
-
-## Getting Started
-
-Start on this project by forking and cloning [this project repository](https://github.com/learn-co-curriculum/dsc-phase-2-project) to get a local copy of the dataset.
-
-We recommend structuring your project repository similar to the structure in [the Phase 1 Project Template](https://github.com/learn-co-curriculum/dsc-project-template). You can do this either by creating a new fork of that repository to work in or by building a new repository from scratch that mimics that structure.
-
-## Project Submission and Review
-
-Review the "Project Submission & Review" page in the "Milestones Instructions" topic to learn how to submit your project and how it will be reviewed. Your project must pass review for you to progress to the next Phase.
-
-## Summary
-
-This project will give you a valuable opportunity to develop your data science skills using real-world data. The end-of-phase projects are a critical part of the program because they give you a chance to bring together all the skills you've learned, apply them to realistic projects for a business stakeholder, practice communication skills, and get feedback to help you improve. You've got this!
+#### images
+    ├── .png                                   <- various .png files
