@@ -69,7 +69,7 @@ The normality issue improved, but I was still having high heteroscedasticity, so
 
 ### Evaluation
 As predicted by my final R-squared value, the fit is OK, but confirms that the top two influences are housing prices are the distance from downtown and the square footage of the living area. Below is a snapshot of some predicted vs. actual data. 
-![pic4](./images/price-v-sqftliving.PNG)
+![pic4](./images/price-v-sqftliving.png)
 
 ### Deployment
 For More Information, please review my full analysis in Jupyter Notebook or my presentation.
