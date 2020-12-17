@@ -9,6 +9,8 @@
 
 In this project, I wanted to focus on providing data to a home buyer looking to move to the Seattle to work and wanting to get a sense of the major influences on the costs of housing. To accomplish this, I will utilize the CRISP-DM method to create a multivariate linear regression model of the King County House Sales dataset.
 
+![pic0](./images/king_county.PNG)
+
 ### Business Understanding
 With the target audience of those moving to Seattle to work, I assumed that someone looking at house prices would want to balance their commute with how much they would spend on a mortgage. I wanted to look at if a house's average distance to the top employers in the Seattle area influenced housing prices. Further for this audience, I made the assumption that this audience would be interested in 2 or fewer bedrooms and houses that cost less than $2 million. 
 
@@ -42,6 +44,10 @@ To get the top 10 employers, I looked at HUD data for the Seattle area, and then
 For each house, I calculated the average distance to each of these 5 employers and the distance of each house to the central downtown area to give two additional features:
 * Average distance to a top 5 employer
 * Distance to the center of downtown
+
+Below is a plot of the houses in my narrowed dataset, the shape of which matches the map above. 
+
+![pic1a](./images/map_props_from_data.png)
 
 ### Data Preparation 
 The data was cleaned to turn numbers stored as strings into integers, fill in 0s where there was missing data or NaN, and also the dates were converted to a number representing the month so these features could be used in the regression. I also converted any categorical variable into dummy/indicator variables so that it would work in the model.
