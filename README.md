@@ -36,7 +36,9 @@ The King County House Sales dataset provided information on the following featur
 * The square footage of the land lots of the nearest 15 neighbors
 
 To get the top 10 employers, I looked at HUD data for the Seattle area, and then further narrowed the list down to the top 5 employers below with centralized campuses as opposed to many locations spread over the entire area. 
+
 ![pic1](./images/employers.PNG)
+
 For each house, I calculated the average distance to each of these 5 employers and the distance of each house to the central downtown area to give two additional features:
 * Average distance to a top 5 employer
 * Distance to the center of downtown
@@ -45,10 +47,12 @@ For each house, I calculated the average distance to each of these 5 employers a
 The data was cleaned to turn numbers stored as strings into integers, fill in 0s where there was missing data or NaN, and also the dates were converted to a number representing the month so these features could be used in the regression. I also converted any categorical variable into dummy/indicator variables so that it would work in the model.
 
 For each house, I calculated the distance to each of these 5 employers and then recorded the average. I also calculated the distance of each house to the central downtown area. What I found is that because these employers are mainly downtown, the distances were relatively close, a snapshot of which is shown below. 
-![pic3](./images/distances_table.PNG)
+
+![pic2](./images/distances_table.PNG)
 
 Because the distances I calculated and also the previously provided zip code, latitude, and longitude data are all different ways to measure distance, they ended up having high multicollinearity, as shown in the heatmap below. As a result, I ended up keeping only the distance to downtown since it was a good representative of all the location features. 
-![pic4](./images/heatmap.PNG)
+
+![pic3](./images/heatmap.png)
 
 ### Modeling
 #### Model I
@@ -65,7 +69,7 @@ The normality issue improved, but I was still having high heteroscedasticity, so
 
 ### Evaluation
 As predicted by my final R-squared value, the fit is OK, but confirms that the top two influences are housing prices are the distance from downtown and the square footage of the living area. Below is a snapshot of some predicted vs. actual data. 
-![pic5](./images/price-v-sqftliving.PNG)
+![pic4](./images/price-v-sqftliving.PNG)
 
 ### Deployment
 For More Information, please review my full analysis in Jupyter Notebook or my presentation.
