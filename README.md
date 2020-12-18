@@ -45,9 +45,9 @@ For each house, I calculated the average distance to each of these 5 employers a
 * Average distance to a top 5 employer
 * Distance to the center of downtown
 
-Below is a plot of the houses in my narrowed dataset, the shape of which matches the map above. 
+Below is a plot of the houses in my narrowed dataset, along with the location of the employers and downtown. 
 
-![pic1a](./images/map_props_from_data.png)
+![pic1a](./images/map.png)
 
 ### Data Preparation 
 The data was cleaned to turn numbers stored as strings into integers, fill in 0s where there was missing data or NaN, and also the dates were converted to a number representing the month so these features could be used in the regression. I also converted any categorical variable into dummy/indicator variables so that it would work in the model.
