@@ -7,12 +7,14 @@
 * Scheduled project review date: December 18, 2020
 * Instructor name: Amber Yandow
 
-In this project, I wanted to focus on providing data to a home buyer looking to move to the Seattle to work and wanting to get a sense of the major influences on the costs of housing. To accomplish this, I will utilize the CRISP-DM method to create a multivariate linear regression model of the King County House Sales dataset.
-
-![pic0](./images/king_county.PNG)
-
 ### Business Understanding
-With the target audience of those moving to Seattle to work, I assumed that someone looking at house prices would want to balance their commute with how much they would spend on a mortgage. I wanted to look at if a house's average distance to the top employers in the Seattle area influenced housing prices. Further for this audience, I made the assumption that this audience would be interested in 2 or fewer bedrooms and houses that cost less than $2 million. 
+Between 2016 and 2019, Seattle’s population increased by 134,000. Per the U.S. Department of Labor & Statistics: “Software Developers, Software Quality Assurance Analysts and Testers” was Seattle’s largest occupation category in 2019.
+
+I wanted to see if I could help workers new or moving to Seattle area to understand what are the major influences on housing prices. Target is Software Developers, Software Quality Assurance Analysts and Testers with a Salary Range: $64,240 -$164,590 (U.S. Department of Labor and Statistics). 
+
+Therefore, I will limit property prices between $105,000 and $1,000,000 based on mortgage recommendations for salary (www.mortgagecalculators.info).
+
+To accomplish this, I will utilize the CRISP-DM method to create a multivariate linear regression model of the King County House Sales dataset.
 
 ### Data Understanding
 The King County House Sales dataset provided information on the following features for each house:
@@ -108,7 +110,7 @@ For having a waterfront, the % change by removing waterfront % change: -35%.
 - Avoid a waterfront property
 - Live at least 5 miles from downtown
 - Live south of downtown
-- Reducesquarefootageifnecessary
+- Reduce square footage if necessary to stay in budget
 
 ### Deployment
 For More Information, please review my full analysis in Jupyter Notebook or my presentation.
